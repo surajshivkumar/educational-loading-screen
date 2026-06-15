@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-geist-sans), 'Geist Fallback';
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-math: var(--math);
+  --color-math-foreground: var(--math-foreground);
+  --color-chem: var(--chem);
+  --color-chem-foreground: var(--chem-foreground);
+  --color-cs: var(--cs);
+  --color-cs-foreground: var(--cs-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: oklch(0.22 0.03 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.03 255);
+  --primary: #004e89;
+  --primary-foreground: oklch(0.99 0.01 250);
+  --muted: oklch(0.95 0.01 250);
+  --muted-foreground: oklch(0.5 0.03 255);
+  --accent: oklch(0.84 0.172 84.076);
+  --accent-foreground: oklch(0.28 0.05 80);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.9 0.015 250);
+  --ring: oklch(0.52 0.17 258);
+  --math: oklch(0.55 0.18 255);
+  --math-foreground: oklch(0.99 0.01 250);
+  --chem: oklch(0.6 0.13 175);
+  --chem-foreground: oklch(0.99 0.01 250);
+  --cs: oklch(0.68 0.16 55);
+  --cs-foreground: oklch(0.99 0.01 250);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@keyframes lesson-loader-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.lesson-loader-fill {
+  --loader-color: var(--primary);
+  width: 0%;
+  background-color: var(--loader-color);
+  animation: lesson-loader-fill 4s ease-in-out infinite;
+}
