@@ -1,89 +1,3 @@
-    document.querySelectorAll(".boro-pill").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".boro-pill").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            const sel = document.getElementById("boroughFilter");
-            sel.value = btn.dataset.boro;
-            sel.dispatchEvent(new Event("change"));
-        });
-    });
-    
-
-======================================================================
-// 📦 MODULE 1: GLOBAL STATE & CACHE
-======================================================================
-let lastHoveredKey = null, hoverTimer = null, activeBoroCode = "ALL";
-    let isLocked = false, lockedAttrs = null, lockedBoroCode = null, highlightHandle = null;
-    const layerViewsByBoro = new Map();
-    const nonResLayerViews = []; // cached at startup to avoid calling whenLayerView on every hover
-    const boroAvgCache = {};
-    let compareMode = false;
-    let compareNta1 = null;
-    let compareNta2 = null;
-    let compareGraphics = new Map(); // slot # → { ring, badge }
-    let compareDrawSeq = 0;
-    document.querySelectorAll(".boro-pill").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".boro-pill").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            const sel = document.getElementById("boroughFilter");
-            sel.value = btn.dataset.boro;
-            sel.dispatchEvent(new Event("change"));
-        });
-    });
-    
-
-======================================================================
-// 📦 MODULE 1: GLOBAL STATE & CACHE
-======================================================================
-let lastHoveredKey = null, hoverTimer = null, activeBoroCode = "ALL";
-    let isLocked = false, lockedAttrs = null, lockedBoroCode = null, highlightHandle = null;
-    const layerViewsByBoro = new Map();
-    const nonResLayerViews = []; // cached at startup to avoid calling whenLayerView on every hover
-    const boroAvgCache = {};
-    let compareMode = false;
-    let compareNta1 = null;
-    let compareNta2 = null;
-    let compareGraphics = new Map(); // slot # → { ring, badge }
-    let compareDrawSeq = 0;
-    document.querySelectorAll(".boro-pill").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".boro-pill").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            const sel = document.getElementById("boroughFilter");
-            sel.value = btn.dataset.boro;
-            sel.dispatchEvent(new Event("change"));
-        });
-    });
-    
-
-======================================================================
-// 📦 MODULE 1: GLOBAL STATE & CACHE
-======================================================================
-let lastHoveredKey = null, hoverTimer = null, activeBoroCode = "ALL";
-    let isLocked = false, lockedAttrs = null, lockedBoroCode = null, highlightHandle = null;
-    const layerViewsByBoro = new Map();
-    const nonResLayerViews = []; // cached at startup to avoid calling whenLayerView on every hover
-    const boroAvgCache = {};
-    let compareMode = false;
-    let compareNta1 = null;
-    let compareNta2 = null;
-    let compareGraphics = new Map(); // slot # → { ring, badge }
-    let compareDrawSeq = 0;
-    document.querySelectorAll(".boro-pill").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".boro-pill").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            const sel = document.getElementById("boroughFilter");
-            sel.value = btn.dataset.boro;
-            sel.dispatchEvent(new Event("change"));
-        });
-    });
-    
-
-======================================================================
-// 📦 MODULE 1: GLOBAL STATE & CACHE
-======================================================================
 let lastHoveredKey = null, hoverTimer = null, activeBoroCode = "ALL";
     let isLocked = false, lockedAttrs = null, lockedBoroCode = null, highlightHandle = null;
     const layerViewsByBoro = new Map();
@@ -782,9 +696,9 @@ let lastHoveredKey = null, hoverTimer = null, activeBoroCode = "ALL";
             }
             async 
 
-======================================================================
+// ======================================================================
 // 📊 MODULE 2: DATA PROCESSING & RANKS
-======================================================================
+// ======================================================================
 function buildRankCache() {
                 try {
                     if (!protectedData.graphics || protectedData.graphics.length === 0) return;
@@ -925,9 +839,9 @@ function buildRankCache() {
             }
             
 
-======================================================================
+// ======================================================================
 // 🔍 MODULE 6: SEARCH & TOP 10 LISTS
-======================================================================
+// ======================================================================
 function _renderNtaList(scopeKey, isCitywide) {
                 const cached  = _ntaItemsCache[scopeKey]; if (!cached) return;
                 const { items, field, cfg, boroCode } = cached;
@@ -1296,9 +1210,9 @@ function _renderNtaList(scopeKey, isCitywide) {
             }
             
 
-======================================================================
+// ======================================================================
 // ⚖️ MODULE 5: COMPARE MODE ENGINE
-======================================================================
+// ======================================================================
 function toggleCompareMode() {
                 if (compareMode) {
                     exitCompareMode();
@@ -1754,9 +1668,9 @@ function toggleCompareMode() {
             });
             
 
-======================================================================
+// ======================================================================
 // 🖱️ MODULE 4: CORE INTERACTIVITY (HOVER & CLICK)
-======================================================================
+// ======================================================================
 view.on("pointer-move", event => {
                 if (hoverTimer) clearTimeout(hoverTimer);
                 hoverTimer=setTimeout(()=>handleHover(event).catch(()=>{}), 12);
@@ -1962,7 +1876,7 @@ function clearWbCategoryFilter() {
                 forceClearWbCategoryGraphics();
             }
 
-function toggleWbCategoryFilter(cat) {
+async function toggleWbCategoryFilter(cat) {
                 const row = document.querySelector(`.map-wb-cat-row[data-cat="${cat}"]`);
                 if (activeWbCategories.has(cat)) {
                     activeWbCategories.delete(cat);
@@ -1993,7 +1907,7 @@ function updateWbCategoryRanges(boroCode) {
                 if (scIntro) scIntro.textContent = scopeWord;
             }
 
-function setBoroughFilter(boroCode) {
+async function setBoroughFilter(boroCode) {
                 activeBoroCode = boroCode;
                 unlockNTA();
                 clearTop10Highlights();
@@ -2035,9 +1949,9 @@ function setBoroughFilter(boroCode) {
             }
 
 
-======================================================================
+// ======================================================================
 // 🚪 MODULE 7: PUBLIC EXPORTS (WINDOW)
-======================================================================
+// ======================================================================
 window.onTop10MetricChange  = onTop10MetricChange;
             window.toggleTop10Highlight = toggleTop10Highlight;
             window.toggleDomain         = toggleDomain;
